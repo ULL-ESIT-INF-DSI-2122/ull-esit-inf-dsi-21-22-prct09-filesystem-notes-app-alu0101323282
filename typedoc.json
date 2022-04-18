@@ -1,6 +1,10 @@
 {
     "entryPoints": [
-        "./src/mod/StringPrintableCollection.ts"
+        "./src/EjercicioPE102/ReduceTemplate.ts",
+        "./src/EjercicioPE102/AddReduce.ts",
+        "./src/EjercicioPE102/SubReduce.ts",
+        "./src/EjercicioPE102/ProdReduce.ts",
+        "./src/EjercicioPE102/DivReduce.ts"
     ],
     "out": "./docs/",
     "sort": "enum-value-ascending",
