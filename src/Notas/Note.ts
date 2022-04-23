@@ -45,7 +45,7 @@ export class Note {
    * @param note Note in json format.
    * @returns A new Note object.
    */
-  public static deserialize(note: NoteInterface) {
+  public static deserialize(note: NoteInterface): Note {
     return new Note(note.user, note.title, note.body, note.color);
   }
 }

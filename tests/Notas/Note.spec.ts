@@ -22,4 +22,7 @@ describe('Pruebas clase Note', () => {
   it(`note.getColor() returns 'red'`, () => {
     expect(note.getColor()).to.be.equal('red');
   });
+  it(`Note.deserialize() returns 'red'`, () => {
+    expect(Note.deserialize({'user': 'User', 'title': 'TestNote', 'body': 'Note for testing', 'color': 'red'})).to.be.eql(note);
+  });
 });
