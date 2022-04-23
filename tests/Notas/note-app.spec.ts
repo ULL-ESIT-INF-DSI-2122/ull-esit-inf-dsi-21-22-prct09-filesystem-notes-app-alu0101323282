@@ -1,4 +1,4 @@
-/* import {exec} from 'child_process';
+import {exec} from 'child_process';
 import 'mocha';
 import {expect} from 'chai';
 import {existsSync, readFile} from 'fs';
@@ -19,37 +19,45 @@ describe('Note app tests', () => {
             note = Note.deserialize(JSON.parse(data.toString()));
             testNote = new Note('User', 'Red note', 'This note is red', 'red');
             expect(note).to.be.eql(testNote);
+            exec('node dist/Notas/note-app.js edit --user="User" --title="Red note" --newTitle="Yellow note" --body="This note is yellow" --color="yellow"', (err) => {
+              if (err) {
+                throw err;
+              } else {
+                readFile('src/Notas/User/Yellow note.json', (err, data) => {
+                  if (err) {
+                    throw err;
+                  } else {
+                    note = Note.deserialize(JSON.parse(data.toString()));
+                    testNote = new Note('User', 'Yellow note', 'This note is yellow', 'yellow');
+                    expect(note).to.be.eql(testNote);
+                    exec('node dist/Notas/note-app.js list --user="User"', (err) => {
+                      if (err) {
+                        throw err;
+                      } else {
+                        exec('node dist/Notas/note-app.js read --user="User" --title="Yellow note"', (err) => {
+                          if (err) {
+                            throw err;
+                          } else {
+                            exec('node dist/Notas/note-app.js remove --user="User" --title="Yellow note"', (err) => {
+                              if (err) {
+                                throw err;
+                              } else {
+                                expect(existsSync('src/Notas/User/Yellow note.json')).to.be.equal(false);
+                              }
+                            });
+                          }
+                        });
+                      }
+                    });
+                  }
+                });
+              }
+            });
           }
         });
       }
     });
   });
-  it('edit --user="User" --title="Red note" --newTitle="Yellow note" --body="This note is yellow" --color="yellow" edits a note', () => {
-    exec('node dist/Notas/note-app.js edit --user="User" --title="Red note" --newTitle="Yellow note" --body="This note is yellow" --color="yellow"', (err) => {
-      if (err) {
-        throw err;
-      } else {
-        readFile('src/Notas/User/Yellow note.json', (err, data) => {
-          if (err) {
-            throw err;
-          } else {
-            note = Note.deserialize(JSON.parse(data.toString()));
-            testNote = new Note('User', 'Yellow note', 'This note is yellow', 'yellow');
-            expect(note).to.be.eql(testNote);
-          }
-        });
-      }
-    });
-  });
-  it('remove --user="User" --title="Yellow note" removes a note', () => {
-    exec('node dist/Notas/note-app.js remove --user="User" --title="Yellow note"', (err) => {
-      if (err) {
-        throw err;
-      } else {
-        expect(existsSync('src/Notas/User/Yellow note.json')).to.be.equal(false);
-      }
-    });
-  });
-});*/
+});
 
 
