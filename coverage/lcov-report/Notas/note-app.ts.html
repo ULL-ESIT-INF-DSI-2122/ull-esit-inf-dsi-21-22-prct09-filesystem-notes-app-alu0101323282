@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.37% </span>
+                <span class="strong">38.79% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/116</span>
+                <span class='fraction'>45/116</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32.05% </span>
+                <span class="strong">23.07% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>25/78</span>
+                <span class='fraction'>18/78</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">47.61% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>12/21</span>
+                <span class='fraction'>10/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.1% </span>
+                <span class="strong">39.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>48/114</span>
+                <span class='fraction'>45/114</span>
             </div>
         
             
@@ -357,8 +357,7 @@
 <a name='L292'></a><a href='#L292'>292</a>
 <a name='L293'></a><a href='#L293'>293</a>
 <a name='L294'></a><a href='#L294'>294</a>
-<a name='L295'></a><a href='#L295'>295</a>
-<a name='L296'></a><a href='#L296'>296</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L295'></a><a href='#L295'>295</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -424,19 +423,19 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -541,15 +540,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -652,8 +651,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-unused-vars */
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable no-unused-vars */
 import * as yargs from 'yargs';
 import {existsSync, writeFile, mkdir, readdir, readFile, rename, rm} from 'fs';
 import {Note} from './Note';
@@ -718,20 +716,20 @@ yargs.command({
       } else {
         let alreadyExists: boolean = false;
         files.forEach((file) =&gt; {
-          <span class="missing-if-branch" title="if path not taken" >I</span>if (file === argv.title + '.json') {
-<span class="cstat-no" title="statement not covered" >            alreadyExists = true;</span>
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (file === argv.title + '.json') {
+            alreadyExists = true;
           }
         });
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (alreadyExists) {
-<span class="cstat-no" title="statement not covered" >          console.log(chalk.red('There is already a note with that name'));</span>
-<span class="cstat-no" title="statement not covered" >          alreadyExists = false;</span>
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (alreadyExists) {
+          console.log(chalk.red('There is already a note with that name'));
+          alreadyExists = false;
         } else {
-          <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof argv.user === 'string' &amp;&amp; typeof argv.title === 'string' &amp;&amp; typeof argv.body === 'string' &amp;&amp; typeof argv.color === 'string') {
-            writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) =&gt; {
-              <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          if (typeof argv.user === 'string' &amp;&amp; typeof argv.title === 'string' &amp;&amp; typeof argv.body === 'string' &amp;&amp; typeof argv.color === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >            writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >              if (err) {</span>
 <span class="cstat-no" title="statement not covered" >                console.log(chalk.red('Something went wrong when writing your file'));</span>
               } else {
-                console.log(chalk.green(`New note added!`));
+<span class="cstat-no" title="statement not covered" >                console.log(chalk.green(`New note added!`));</span>
               }
             });
           }
@@ -835,16 +833,16 @@ yargs.command({
     },
   },
   handler(argv) {
-    <span class="missing-if-branch" title="else path not taken" >E</span>if (existsSync(`src/Notas/${argv.user}/${argv.title}.json`)) {
-      rm(`src/Notas/${argv.user}/${argv.title}.json`, (err) =&gt; {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (existsSync(`src/Notas/${argv.user}/${argv.title}.json`)) {
+<span class="cstat-no" title="statement not covered" >      rm(`src/Notas/${argv.user}/${argv.title}.json`, <span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) {</span>
 <span class="cstat-no" title="statement not covered" >          throw err;</span>
         } else {
-          console.log(chalk.green('Note removed!'));
+<span class="cstat-no" title="statement not covered" >          console.log(chalk.green('Note removed!'));</span>
         }
       });
     } else {
-<span class="cstat-no" title="statement not covered" >      console.log(chalk.red('Note not found'));</span>
+      console.log(chalk.red('Note not found'));
     }
   },
 });
@@ -947,15 +945,14 @@ yargs.command({
       });
     }
   },
-});
-yargs.parse();</pre></td></tr></table></pre>
+}).parse();</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Apr 23 2022 14:08:33 GMT+0000 (Coordinated Universal Time)
+                at Sat Apr 23 2022 18:01:47 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

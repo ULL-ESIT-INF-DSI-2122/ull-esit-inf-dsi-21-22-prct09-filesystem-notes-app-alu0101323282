@@ -19,6 +19,28 @@ export enum Color {
     GRAY = 'gray'
 };
 
+/**
+ * Writes a note file.
+ * @param user Note user
+ * @param title Note title
+ * @param body Note body
+ * @param color Note color
+ * @param command True if its used by `add` command, false if its used `edit` command.
+ */
+export function write(user: string, title: string, body: string, color: string, command: boolean = true): void {
+  writeFile(`src/Notas/${user}/${title}.json`, JSON.stringify(new Note(user, title, body, color)), (err) => {
+    if (err) {
+      console.log(chalk.red('Something went wrong when writing your file'));
+    } else {
+      if (command) {
+        console.log(chalk.green(`Note created!`));
+      } else {
+        console.log(chalk.green(`Note edited!`));
+      }
+    }
+  });
+}
+
 
 yargs.command({
   command: 'add',
@@ -52,13 +74,7 @@ yargs.command({
           mkdir(`src/Notas/${argv.user}`, {recursive: true}, (err) => {
             if (err) throw err;
           });
-          writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-            if (err) {
-              console.log(chalk.red('Something went wrong when writing your file'));
-            } else {
-              console.log(chalk.green('New note added!'));
-            }
-          });
+          write(argv.user, argv.title, argv.body, argv.color);
         }
       } else {
         let alreadyExists: boolean = false;
@@ -72,21 +88,13 @@ yargs.command({
           alreadyExists = false;
         } else {
           if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
-            writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-              if (err) {
-                console.log(chalk.red('Something went wrong when writing your file'));
-              } else {
-                console.log(chalk.green(`New note added!`));
-              }
-            });
+            write(argv.user, argv.title, argv.body, argv.color);
           }
         }
       }
     });
   },
-});
-
-yargs.command({
+}).command({
   command: 'edit',
   describe: 'Edit a note',
   builder: {
@@ -136,35 +144,21 @@ yargs.command({
                 rename(`src/Notas/${argv.user}/${argv.title}.json`, `src/Notas/${argv.user}/${argv.newTitle}.json`, (err) => {
                   if (err) throw err;
                 });
-                writeFile(`src/Notas/${argv.user}/${argv.newTitle}.json`, JSON.stringify(new Note(argv.user, argv.newTitle, argv.body, argv.color)), (err) => {
-                  if (err) {
-                    console.log(chalk.red('Something went wrong when writing your file'));
-                  } else {
-                    console.log(chalk.green(`Note edited!`));
-                  }
-                });
+                write(argv.user, argv.newTitle, argv.body, argv.color, false);
               }
             }
           }
         });
       } else {
         if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
-          writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-            if (err) {
-              console.log(chalk.red('Something went wrong when writing your file'));
-            } else {
-              console.log(chalk.green(`Note edited!`));
-            }
-          });
+          write(argv.user, argv.title, argv.body, argv.color, false);
         }
       }
     } else {
       console.log(chalk.red('Note not found'));
     }
   },
-});
-
-yargs.command({
+}).command({
   command: 'remove',
   describe: 'Remove a note',
   builder: {
@@ -192,9 +186,7 @@ yargs.command({
       console.log(chalk.red('Note not found'));
     }
   },
-});
-
-yargs.command({
+}).command({
   command: 'read',
   describe: 'Read a note',
   builder: {
@@ -245,9 +237,7 @@ yargs.command({
       console.log(chalk.red('Note not found'));
     }
   },
-});
-
-yargs.command({
+}).command({
   command: 'list',
   describe: 'List user notes',
   builder: {
@@ -292,5 +282,4 @@ yargs.command({
       });
     }
   },
-});
-yargs.parse();
+}).parse();
