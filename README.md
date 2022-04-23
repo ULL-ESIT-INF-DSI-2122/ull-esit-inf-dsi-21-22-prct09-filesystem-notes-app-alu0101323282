@@ -90,13 +90,7 @@ export interface NoteInterface {
           mkdir(`src/Notas/${argv.user}`, {recursive: true}, (err) => {
             if (err) throw err;
           });
-          writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-            if (err) {
-              console.log(chalk.red('Something went wrong when writing your file'));
-            } else {
-              console.log(chalk.green('New note added!'));
-            }
-          });
+          write(argv.user, argv.title, argv.body, argv.color);
         }
       } else {
         let alreadyExists: boolean = false;
@@ -110,13 +104,7 @@ export interface NoteInterface {
           alreadyExists = false;
         } else {
           if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
-            writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-              if (err) {
-                console.log(chalk.red('Something went wrong when writing your file'));
-              } else {
-                console.log(chalk.green(`New note added!`));
-              }
-            });
+            write(argv.user, argv.title, argv.body, argv.color);
           }
         }
       }
@@ -183,26 +171,14 @@ export interface NoteInterface {
                 rename(`src/Notas/${argv.user}/${argv.title}.json`, `src/Notas/${argv.user}/${argv.newTitle}.json`, (err) => {
                   if (err) throw err;
                 });
-                writeFile(`src/Notas/${argv.user}/${argv.newTitle}.json`, JSON.stringify(new Note(argv.user, argv.newTitle, argv.body, argv.color)), (err) => {
-                  if (err) {
-                    console.log(chalk.red('Something went wrong when writing your file'));
-                  } else {
-                    console.log(chalk.green(`Note edited!`));
-                  }
-                });
+                write(argv.user, argv.newTitle, argv.body, argv.color, false);
               }
             }
           }
         });
       } else {
         if (typeof argv.user === 'string' && typeof argv.title === 'string' && typeof argv.body === 'string' && typeof argv.color === 'string') {
-          writeFile(`src/Notas/${argv.user}/${argv.title}.json`, JSON.stringify(new Note(argv.user, argv.title, argv.body, argv.color)), (err) => {
-            if (err) {
-              console.log(chalk.red('Something went wrong when writing your file'));
-            } else {
-              console.log(chalk.green(`Note edited!`));
-            }
-          });
+          write(argv.user, argv.title, argv.body, argv.color, false);
         }
       }
     } else {
@@ -210,6 +186,23 @@ export interface NoteInterface {
     }
   },
 });
+```
+
+*Función write utilizada en los comandos `add` y `edit`:
+``` typescript
+export function write(user: string, title: string, body: string, color: string, command: boolean = true): void {
+  writeFile(`src/Notas/${user}/${title}.json`, JSON.stringify(new Note(user, title, body, color)), (err) => {
+    if (err) {
+      console.log(chalk.red('Something went wrong when writing your file'));
+    } else {
+      if (command) {
+        console.log(chalk.green(`Note created!`));
+      } else {
+        console.log(chalk.green(`Note edited!`));
+      }
+    }
+  });
+}
 ```
  
 ### __Borrar notas__
