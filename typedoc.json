@@ -6,6 +6,7 @@
         "./src/EjercicioPE102/ProdReduce.ts",
         "./src/EjercicioPE102/DivReduce.ts",
         "./src/Notas/Note.ts",
+        "./src/Notas/NoteManager.ts",
         "./src/Notas/note-app.ts"
     ],
     "out": "./docs/",
