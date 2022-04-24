@@ -34,7 +34,7 @@
     }
   }
   ```
-Cabe señalar que para el correcto funcionamiento de este último método he creado también una interfaz NoteInterfaze que contine las propiedades de una nota.
+Cabe señalar que para el correcto funcionamiento de este último método he creado también una interfaz NoteInterfaze que contine las propiedades de una nota. 
 
 ``` typescript
 export interface NoteInterface {
